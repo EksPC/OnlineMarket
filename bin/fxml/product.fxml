@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="380.0" maxWidth="400.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="380.0" styleClass="single-product" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="137.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="50.0" />
+         </StackPane.margin>
+         <image>
+            <Image url="@../pngs/product-lauch.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ownerTypeField" alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="78.0" textAlignment="RIGHT" StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="20.0" top="10.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameField" alignment="CENTER" prefHeight="25.0" prefWidth="227.0">
+         <StackPane.margin>
+            <Insets top="100.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="priceField" prefHeight="21.0" prefWidth="95.0" StackPane.alignment="CENTER">
+         <StackPane.margin>
+            <Insets top="200.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Text fx:id="ownerField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.7294921875" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="10.0" />
+         </StackPane.margin>
+      </Text>
+      <Text fx:id="idField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="101.7294921875" StackPane.alignment="BOTTOM_CENTER">
+         <StackPane.margin>
+            <Insets bottom="50.0" />
+         </StackPane.margin>
+      </Text>
+   </children>
+</StackPane>

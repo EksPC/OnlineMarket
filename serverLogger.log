@@ -1,0 +1,10 @@
+Jan 30, 2024 4:35:07 PM server.MarketServer main
+FINE: Server on, waiting for connection...
+Jan 30, 2024 4:35:14 PM server.MarketServer checkLogin
+FINE: Credentials: pippo 0000
+Jan 30, 2024 4:35:14 PM server.MarketServer checkLogin
+FINE: pippo authenticated.
+Jan 30, 2024 4:35:20 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@5bd03f44
+Jan 30, 2024 4:35:20 PM server.MarketServer main
+FINE: Server closing.

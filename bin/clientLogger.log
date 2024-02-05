@@ -1,0 +1,8 @@
+Jan 30, 2024 4:35:10 PM client.MarketClient setConnection
+FINE: CLIENT - setConnection executed
+Jan 30, 2024 4:35:10 PM client.MarketClient setConnection
+FINE: CLIENT - connection enstablished
+Jan 30, 2024 4:35:14 PM client.MarketClient checkCredentials
+FINE: CLIENT - checkCredentials executed
+Jan 30, 2024 4:35:20 PM client.MarketClient close
+FINE: CLIENT - closing connection...
