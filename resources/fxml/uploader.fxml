@@ -6,66 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane maxHeight="200.0" maxWidth="400.0" prefHeight="164.0" prefWidth="400.0" StackPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="91.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="309.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <padding>
-            <Insets bottom="40.0" />
-         </padding>
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="98.0" text="NAME">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="98.0" text="ID" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="98.0" text="\$$" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nameField" maxWidth="240.0" prefHeight="24.0" prefWidth="262.0" GridPane.columnIndex="1" />
-            <TextField fx:id="idField" maxWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="priceField" maxWidth="240.0" prefHeight="24.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
+      <Button fx:id="uploadProductBtn" mnemonicParsing="false" onAction="#uploadSingleProduct" style="-fx-background-color: e38200; -fx-border-color: black;" stylesheets="@../Desktop/Coding/Java/OnlineMarket/resources/style.css" text="UPLOAD" StackPane.alignment="BOTTOM_CENTER">
          <StackPane.margin>
-            <Insets top="160.0" />
-         </StackPane.margin>
-      </GridPane>
-      <Button fx:id="uploadProductBtn" mnemonicParsing="false" onAction="#uploadSingleProduct" text="UPLOAD" StackPane.alignment="BOTTOM_CENTER">
-         <StackPane.margin>
-            <Insets bottom="30.0" />
+            <Insets bottom="80.0" />
          </StackPane.margin>
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Button>
-      <Text fx:id="warningText" fill="#e38200" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="293.7294921875">
+      <Text fx:id="warningText" fill="#e38200" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="307.7294921875">
          <StackPane.margin>
-            <Insets bottom="80.0" />
+            <Insets bottom="190.0" />
          </StackPane.margin>
          <font>
-            <Font name="System Bold Italic" size="13.0" />
+            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Text>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
@@ -76,5 +37,40 @@
             <Image url="@../pngs/new-item.png" />
          </image>
       </ImageView>
+      <VBox alignment="CENTER" maxHeight="180.0" maxWidth="400.0" prefHeight="266.0" prefWidth="400.0">
+         <children>
+            <Label prefHeight="21.0" prefWidth="400.0" text="NAME">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameField">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label prefHeight="18.0" prefWidth="397.0" text="ID">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="idField" />
+            <Label prefHeight="21.0" prefWidth="400.0" text="PRICE">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="priceField" />
+         </children>
+         <StackPane.margin>
+            <Insets top="100.0" />
+         </StackPane.margin>
+      </VBox>
    </children>
 </StackPane>

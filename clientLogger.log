@@ -1,44 +1,24 @@
-Feb 16, 2024 11:50:27 AM client.MarketClient setConnection
+Feb 16, 2024 8:31:54 PM client.MarketClient setConnection
 FINE: CLIENT - setConnection executed
-Feb 16, 2024 11:50:27 AM client.MarketClient setConnection
+Feb 16, 2024 8:31:54 PM client.MarketClient setConnection
 FINE: CLIENT - connection enstablished
-Feb 16, 2024 11:50:31 AM client.MarketClient checkCredentials
+Feb 16, 2024 8:31:57 PM client.MarketClient checkCredentials
 FINE: CLIENT - checkCredentials executed
-Feb 16, 2024 11:50:33 AM client.MarketClient startCommunication
+Feb 16, 2024 8:32:07 PM client.MarketClient startCommunication
 FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:33 AM client.MarketClient startCommunication
+Feb 16, 2024 8:32:07 PM client.MarketClient startCommunication
 FINE: request: 2
-Feb 16, 2024 11:50:35 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:35 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:38 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:38 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:39 AM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 16, 2024 11:50:39 AM client.MarketClient startCommunication
-FINE: request: 2
-Feb 16, 2024 11:50:40 AM client.MarketClient close
+Feb 16, 2024 8:32:07 PM client.MarketClient startCommunication
+FINE: Sending communication - code is 1
+Feb 16, 2024 8:32:07 PM client.MarketClient startCommunication
+FINE: request: 1
+Feb 16, 2024 8:32:13 PM client.MarketClient startCommunication
+FINE: Sending communication - code is 5
+Feb 16, 2024 8:32:13 PM client.MarketClient startCommunication
+FINE: request: 5
+Feb 16, 2024 8:32:13 PM client.MarketClient startCommunication
+WARNING: [Ljava.lang.StackTraceElement;@338c1291
+Feb 16, 2024 8:33:37 PM client.MarketClient close
 FINE: CLIENT - closing connection...
+Feb 16, 2024 8:33:37 PM client.MarketClient close
+FINE: Broken pipe

@@ -1,9 +1,9 @@
-Lamp;H01;30;topolino;s
-Mouse;T01;10;paperino;s
-Monitor;T02;100;pluto;s
-Keyboard;T03;50;pippo;o
-Table;H02;300;pippo;o
-Bed;H03;280;pluto;s
+Lamp;H01;30;topolino
+Mouse;T01;10;paperino
+Monitor;T02;100;pluto
+Keyboard;T03;50;pippo
+Table;H02;300;pippo
+Bed;H03;280;pluto
 Bin;H04;5;
 Ball;B01;10;
 Telescope;T04;580;

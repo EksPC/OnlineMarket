@@ -170,7 +170,7 @@ public class MarketClient{
 	/**
 	 * This method simply sends a message via socket to the server and get the response*/
 	@SuppressWarnings("unchecked")
-	public void startCommunication(int code) {
+	public void startCommunication(int code, Product prod) {
 		/*S:
 		 * 1. Products (automatic)
 		 * */
@@ -184,10 +184,23 @@ public class MarketClient{
 			socketOutput.flush();
 			
 			switch(code) {
-			case 2: //owned forSaleProducts
+			case 1: //list of products
+				products = (List<Product>) socketInput.readObject();
+			case 2: //owned Products
 				ownedProducts = (List<Product>) socketInput.readObject();
-				logger.log(Level.SEVERE, "First product is: " + ownedProducts.get(0).getName());
 				break;
+				
+			case 5: //upload request
+				//writing request
+				socketOutput.writeObject(message);
+				socketOutput.flush();
+
+				//writing product to upload
+				socketOutput.writeObject(prod);
+				socketOutput.flush();
+				
+				message = (SingleMessage) socketInput.readObject();
+				controller.printUploadStatus(message.getRequest());
 			}
 			
 		
@@ -196,6 +209,8 @@ public class MarketClient{
 		}catch(ClassNotFoundException cnf) {
 			logger.log(Level.WARNING,cnf.getLocalizedMessage());
 			System.out.println("CLIENT - Credentials check error- " + cnf.getLocalizedMessage());
+		} catch (IllegalStateException is) {
+			logger.log(Level.WARNING, "List error.\n");
 		}
 	}
 	
@@ -240,6 +255,8 @@ public class MarketClient{
 		} 
 		
 	}
+	
+	
 	
 	
 	/**

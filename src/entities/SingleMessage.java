@@ -12,13 +12,14 @@ public class SingleMessage implements Serializable{
 	private boolean connection = false;
 	private boolean authentication = false;
 	
-	private Object response;	//SERVER
+	private Object object;	//SERVER
 	private int request;	//CLIENT
-	
+	public String str;
 	
 	public SingleMessage(boolean connection, boolean authentication){
 		this.connection = connection;
 	}
+
 	
 	public boolean getConnection() {
 		return this.connection;
@@ -41,12 +42,12 @@ public class SingleMessage implements Serializable{
 		return this.authentication;
 	}
 	
-	public void setResponse(Object o) {
-		this.response = o;
+	public void setObject(Object o) {
+		this.object = o;
 	}
 	
-	public Object getResponse() {
-		return this.response;
+	public Object getObject() {
+		return this.object;
 	}
 	
 	/**

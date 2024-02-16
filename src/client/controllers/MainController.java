@@ -79,26 +79,26 @@ public class MainController {
 		loaders.getUploaderLoader().setController(uploaderController);
 	}
 	
-	private static boolean setLogger() {
-		
-		System.out.println("Creatig logger");
-		LogManager.getLogManager().reset();
-		logger.setLevel(Level.ALL);
-		
-		try {
-			logFile = new FileHandler("mainControllerLogger.log");
-			logFile.setLevel(Level.FINE);
-			logger.addHandler(logFile);
-			logFile.setFormatter(new SimpleFormatter());
-			
-		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Logger not initialized");
-			return false;
-		}
-		logger.log(Level.FINEST,"logger initialised");
-		return true;
-	}
-	
+//	private static boolean setLogger() {
+//		
+//		System.out.println("Creatig logger");
+//		LogManager.getLogManager().reset();
+//		logger.setLevel(Level.ALL);
+//		
+//		try {
+//			logFile = new FileHandler("mainControllerLogger.log");
+//			logFile.setLevel(Level.FINE);
+//			logger.addHandler(logFile);
+//			logFile.setFormatter(new SimpleFormatter());
+//			
+//		} catch (IOException e) {
+//			logger.log(Level.SEVERE, "Logger not initialized");
+//			return false;
+//		}
+//		logger.log(Level.FINEST,"logger initialised");
+//		return true;
+//	}
+//	
 	
 	public void printMsg(String msg) {
 		mainApp.printMessage(msg);
@@ -159,12 +159,7 @@ public class MainController {
 	 * code = 2 - owned products
 	 * */
 	public void showProducts(int code) {
-		
-		if(toUpdate || ownedProducts == null) {
-			getUpdatedProducts();
-			toUpdate = false;
-		}
-		
+		getUpdatedProducts();
 		ScrollPane cur = new ScrollPane(productsController.getProductsView(client.getProducts(code)));
 		mainApp.setNewCenter(cur,null);
 	}
@@ -172,14 +167,18 @@ public class MainController {
 	/**This method triggers a client-server communication requesting both the list of owned forSaleProducts and
 	 * the list of products for sale. */
 	private void getUpdatedProducts() {
-		client.startCommunication(2);
-		ownedProducts = client.getProducts(2);
-		
-		client.startCommunication(1);
-		forSaleProducts = client.getProducts(1);
+		if(toUpdate) {
+			client.startCommunication(2,null);
+			ownedProducts = client.getProducts(2);
+			
+			client.startCommunication(1,null);
+			forSaleProducts = client.getProducts(1);
+			toUpdate = false;
+		}
 	}
 	
-	
+	/** This method displays the product uploader on the main app when the respective button is clicked.
+	 * */
 	public void showUploader() {
 		if(uploader == null) {
 			try {
@@ -187,12 +186,23 @@ public class MainController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				logger.log(Level.WARNING,e.getLocalizedMessage());
 			}
 		}
 		
 		mainApp.setNewCenter(null, uploader);
 	}
+	
+	/** This method handles the product upload, an event triggered by the user to upload a product.
+	 * */
+	public void uploadProduct(Product prod) {
+		client.startCommunication(5, prod);
+	}
+	
+	public void printUploadStatus(int st) {
+		uploaderController.printStatusMessage(st==1);
+	}
 
+	
+	
 	
 }

@@ -204,11 +204,20 @@ public class MarketServer {
 					case (0):
 						close();
 						break;
+					case (1):
+						if(controller.getProductsList() == null) {
+							logger.log(Level.WARNING,"Products list is null.\n");
+							return;
+						}
+						socketOutput.writeObject(controller.getProductsList());
+						socketOutput.flush();
 					case (2):
 						System.out.println("Sending " + userCredentials.getUsr() + " it's list!");
-						for (Product prod : controller.getOwnedProduct(userCredentials.getUsr())) {
-							System.out.println("Sending: " + prod.getOwnerName());
+						if(controller.getOwnedProduct(userCredentials.getUsr()) == null) {
+							logger.log(Level.WARNING,"Owned products list is null.\n");
+							return;
 						}
+						
 						socketOutput.writeObject(controller.getOwnedProduct(userCredentials.getUsr()));
 						socketOutput.flush();
 						break;
@@ -219,14 +228,25 @@ public class MarketServer {
 						//Restituzione prodotto
 
 					case (5):
-						//Caricamento prodotto
+						logger.log(Level.FINE,"Upload request.\n");
+						
+						SingleMessage res = new SingleMessage(connectionState, authenticationState);
+						Product newProd = (Product) socketInput.readObject();
+						if(newProd == null) {
+							System.out.println("SERVER - req 5 - no product.");
+							return;
+						}
+						
+						if(controller.uploadProduct(newProd)) {
+							res.setRequest(1);
+						} else {
+							res.setRequest(0);
+						}
+						
+						socketOutput.writeObject(res);
+						
 					}
 				}
-				
-				
-		
-			
-					
 		} catch (IOException e){
 			System.out.println("connection error - " + e.getMessage());
 			close();

@@ -49,6 +49,14 @@ public class Product implements Serializable{
 		return true;
 	}
 	
+	public String toString() {
+		String toRet = name+";"+id+";"+Double.toString(price);
+		if(ownerName != "") {
+			toRet += ";"+ownerName;
+		}
+		return toRet;
+	}
+	
 	public void setPrice(double newPrice) {
 		this.price = newPrice;
 	}

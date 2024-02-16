@@ -1,6 +1,8 @@
 package server;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +200,38 @@ public class ServerController {
 	}	
 
 
-
+	/**
+	 * This method upload a product (if the id is valid) by weriting it on the database.
+	 * @return boolean*/
+	public boolean uploadProduct(Product newProd) throws IOException {
+		
+		if(!checkUpload(newProd)) {
+			return false;
+		}
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(storageFileName));
+		writer.write(newProd.toString());
+		
+		if(writer != null) {
+			writer.close();
+		}
+		return true;
+	}
+	
+	
+	/**
+	 * This method return a boolean. It returns {@code true} if the ID of the new product is not inside of the database, 
+	 * {@code false} else. The algorithm runs in O(n).
+	 * 
+	 * @return boolean*/
+	private boolean checkUpload(Product prod) {
+		for(Product p : products) {
+			if(p.getId() == prod.getId()) {
+				return false;
+			}
+			
+		}
+		return true;
+	}
 
 }	

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class UploaderController implements Initializable{
@@ -34,15 +35,15 @@ public class UploaderController implements Initializable{
 	
 	@FXML
 	private void uploadSingleProduct(final ActionEvent event) {
-		String name = nameField.getText();
+		String name = nameField.getText();		
 		Double price = Double.parseDouble(priceField.getText());
 		String id = idField.getText();
 		
 		Product newProduct = new Product(name, id, price);
 		newProduct.setOwnerName(controller.getCredentials().getUsr());
 		
-//		controller.uploadProduct(newProduct);
-		warningText.setText("Upload simulation.");
+		warningText.setText("Uploading...");
+		controller.uploadProduct(newProduct);
 	}
 	
 
@@ -58,6 +59,21 @@ public class UploaderController implements Initializable{
 	
 	public UploaderController(MainController main) {
 		this.controller = main;
+	}
+	
+	public void printStatusMessage(boolean status) {
+		
+		if(status) {
+			warningText.setText("Product uploaded succesfully!");
+			warningText.setFill(Color.GREEN);
+			
+			nameField.setText("");
+			idField.setText("");
+			priceField.setText("");
+			
+		} else {
+			warningText.setText("Upload error, invalid ID! \nThe ID you choose is already taken.");
+		}
 	}
 	
 	
