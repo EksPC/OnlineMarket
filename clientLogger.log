@@ -1,8 +1,44 @@
-Jan 30, 2024 4:35:10 PM client.MarketClient setConnection
+Feb 16, 2024 11:50:27 AM client.MarketClient setConnection
 FINE: CLIENT - setConnection executed
-Jan 30, 2024 4:35:10 PM client.MarketClient setConnection
+Feb 16, 2024 11:50:27 AM client.MarketClient setConnection
 FINE: CLIENT - connection enstablished
-Jan 30, 2024 4:35:14 PM client.MarketClient checkCredentials
+Feb 16, 2024 11:50:31 AM client.MarketClient checkCredentials
 FINE: CLIENT - checkCredentials executed
-Jan 30, 2024 4:35:20 PM client.MarketClient close
+Feb 16, 2024 11:50:33 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:33 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:35 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:35 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:36 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:37 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:38 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:38 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:39 AM client.MarketClient startCommunication
+FINE: Sending communication - code is 2
+Feb 16, 2024 11:50:39 AM client.MarketClient startCommunication
+FINE: request: 2
+Feb 16, 2024 11:50:40 AM client.MarketClient close
 FINE: CLIENT - closing connection...

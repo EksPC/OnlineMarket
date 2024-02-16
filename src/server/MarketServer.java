@@ -1,5 +1,10 @@
 package server;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.ServerSocket;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -9,7 +14,7 @@ import java.util.logging.SimpleFormatter;
 import entities.CredentialsCouple;
 import entities.Product;
 import entities.SingleMessage;
-import src.client.MarketClient;
+import client.MarketClient;
 
 
 
