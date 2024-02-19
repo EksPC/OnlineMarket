@@ -40,7 +40,6 @@ public class UploaderController implements Initializable{
 		String id = idField.getText();
 		
 		Product newProduct = new Product(id, name, price);
-//		newProduct.setOwnerName(controller.getCredentials().getUsr());
 		
 		warningText.setText("Uploading...");
 		controller.uploadProduct(newProduct);

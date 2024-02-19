@@ -1,24 +1,16 @@
 package client.controllers;
 
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 import client.Main;
 import client.MarketClient;
 import entities.CredentialsCouple;
 import entities.Product;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -32,8 +24,6 @@ import javafx.scene.layout.StackPane;
  * @version 1.0
  * */
 public class MainController {
-
-	private boolean toUpdate = true;
 	
 	public MarketClient client = new MarketClient(this);
 	private static CredentialsCouple credentials;
@@ -46,7 +36,7 @@ public class MainController {
 	
 	private LoginController loginController;
 	private AppController appController;
-	public ProductsController productsController; //TODO private
+	private ProductsController productsController; 
 	private UploaderController uploaderController;
 	
 	private BorderPane mainView;
@@ -73,36 +63,12 @@ public class MainController {
 		loginController = new LoginController(this);
 		loaders.getLoginLoader().setController(loginController);
 		
-		productsController = new ProductsController(this);
+		productsController = new ProductsController();
 		
 		uploaderController = new UploaderController(this);
 		loaders.getUploaderLoader().setController(uploaderController);
 	}
 	
-//	private static boolean setLogger() {
-//		
-//		System.out.println("Creatig logger");
-//		LogManager.getLogManager().reset();
-//		logger.setLevel(Level.ALL);
-//		
-//		try {
-//			logFile = new FileHandler("mainControllerLogger.log");
-//			logFile.setLevel(Level.FINE);
-//			logger.addHandler(logFile);
-//			logFile.setFormatter(new SimpleFormatter());
-//			
-//		} catch (IOException e) {
-//			logger.log(Level.SEVERE, "Logger not initialized");
-//			return false;
-//		}
-//		logger.log(Level.FINEST,"logger initialised");
-//		return true;
-//	}
-//	
-//	
-//	public void printMsg(String msg) {
-//		mainApp.printMessage(msg);
-//	}
 	
 	/**This method checks whether the login is valid or not by invoking the {@code MarketClient}. 
 	 * The method is triggered when the "SUBMIT" button of the login view is pressed.*/								
@@ -144,14 +110,7 @@ public class MainController {
 		mainApp.quit();
 		client.close();
 	}
-	
-	/**This method handles the press of the {@code Products button} in the application by changing the {@code Main} view
-	 * with a ScrollPane from {@code ProductsController object}.*/
-//	public void showProducts() {
-//		//TODO DISPLAY OPTIONS
-//		
-//		mainApp.setNewCenter(pane);
-//	}
+
 	
 	/**This method is triggered by pressing the {@code Products} button of the application and it displays a 
 	 * list of forSaleProducts based on the {@code input}. 
@@ -160,8 +119,9 @@ public class MainController {
 	 * */
 	public void showProducts(int code) {
 		
-		client.startCommunication(code, null);
 		if(client.getProducts(code).isEmpty()) {
+			ScrollPane empty = new ScrollPane();
+			mainApp.setNewCenter(empty, null);
 			return;
 		}
 		ScrollPane cur = new ScrollPane(productsController.getProductsView(client.getProducts(code)));
@@ -173,11 +133,11 @@ public class MainController {
 	/** This method displays the product uploader on the main app when the respective button is clicked.
 	 * */
 	public void showUploader() {
+
 		if(uploader == null) {
 			try {
 				uploader = loaders.getUploaderLoader().load();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -193,9 +153,17 @@ public class MainController {
 	
 	public void printUploadStatus(int st) {
 		uploaderController.printStatusMessage(st==1);
-		toUpdate = (st == 1);
+		if(st == 1) {
+			updateProducts();
+		}
 	}
 
+	/**This method triggers client requests of owned products and for-sell products. It is triggered
+	 * after upload/return/buy requests from client.*/
+	private void updateProducts() {
+		client.startCommunication(1, null);
+		client.startCommunication(2, null);
+	}
 	
 	
 	

@@ -2,8 +2,6 @@ package client.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,9 +13,7 @@ import javafx.scene.text.Text;
 
 public class LoginController implements Initializable{	
 	
-	private final String logFilePath = "clientLogger.log";
 	private MainController controller;
-	private Logger logger;
 	
 	@FXML
 	public TextField username_input;

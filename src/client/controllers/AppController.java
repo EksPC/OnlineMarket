@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
 public class AppController implements Initializable{
 	
 	private MainController controller;
-	private SingleProductController productController;
 	
 	@FXML
 	private ScrollPane centerPane;

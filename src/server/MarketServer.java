@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import entities.CredentialsCouple;
-import entities.Product;
 import entities.SingleMessage;
 import client.MarketClient;
 
@@ -115,7 +114,6 @@ public class MarketServer {
 		try {
 			while(!authenticationState) {
 				//initialising the message
-				SingleMessage msg = new SingleMessage(connectionState,false);
 				
 				
 				//getting credentials from client
@@ -133,6 +131,7 @@ public class MarketServer {
 				
 				} else {
 					logger.log(Level.FINE,userCredentials.getUsr() + " authenticated.");
+					controller.updateProductsLists();
 					state =successfulLoginAction();
 			
 				}
@@ -160,7 +159,7 @@ public class MarketServer {
 		socketOutput.writeObject(msg);
 		socketOutput.flush();
 		
-		socketOutput.writeObject(controller.getProductsList());
+		socketOutput.writeObject(controller.getProductsList(1));
 		socketOutput.flush();
 		
 		return true;
@@ -188,7 +187,6 @@ public class MarketServer {
 	private static void handleRequests() {
 		try {
 			
-				String prod = "";
 				Object buf;
 				SingleMessage req = new SingleMessage(connectionState, authenticationState);
 				
@@ -210,24 +208,25 @@ public class MarketServer {
 						close();
 						break;
 					case (1):
-						if(controller.getProductsList() == null) {
+						if(controller.getProductsList(1) == null) {
 							logger.log(Level.WARNING,"Products list is null.\n");
 							return;
 						}
-						socketOutput.writeObject(controller.getProductsList());
+						socketOutput.writeObject(controller.getProductsList(1));
 						socketOutput.flush();
 					case (2):
 						
-						if(controller.getOwnedProduct(userCredentials.getUsr()) == null) {
+						if(controller.getProductsList(2) == null) {
 							logger.log(Level.WARNING,"Owned products list is null.\n");
 							return;
 						}
 						
-						socketOutput.writeObject(controller.getOwnedProduct(userCredentials.getUsr()));
+						socketOutput.writeObject(controller.getProductsList(2));
 						socketOutput.flush();
 						break;
 					case (3):
 						//Acquisto prodotto
+						
 
 					case (4):
 						//Restituzione prodotto
@@ -263,9 +262,8 @@ public class MarketServer {
 		while(!(buf = socketInput.readObject()).getClass().equals(String.class)) {
 			;
 		}
-		//TODO DEBUG
+		
 		prod = (String) buf;
-		System.out.println("PRODUCT: " +prod);
 		
 		//3. Check
 		if(controller.uploadProduct(prod)) {
@@ -343,7 +341,7 @@ public class MarketServer {
 			
 		} 
 		
-		if(controller.getProductsList() != null) {
+		if(controller.getProductsList(0) != null) {
 			System.out.println("Products ok");
 		}
 		
@@ -354,6 +352,7 @@ public class MarketServer {
 		
 		checkLogin();
 		System.out.println("Client Connected");
+		
 		
 		handleRequests();
 		System.out.println("Server closing...");

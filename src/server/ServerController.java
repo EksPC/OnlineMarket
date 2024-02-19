@@ -22,7 +22,9 @@ public class ServerController {
 	
 	private static List<CredentialsCouple> credentials = new ArrayList<>();
 	private static List<Product> products = new ArrayList<>();
-	
+	private static List<Product> ownedProducts = new ArrayList<Product>();
+	private static List<Product> forSellProducts = new ArrayList<>();
+ 	
 	private static final String credentialsFileName = "resources/credentials.txt";
 	private static final String storageFileName = "resources/storage.txt";
 	
@@ -54,26 +56,42 @@ public class ServerController {
 	
 	
 	
-	/**This method returns every product for sell.*/
-	public List<Product> getProductsList(){
-		return products;
+	/**This method returns the requested list of products.
+	 * Code 1 = products for sell.
+	 * Code 2 = owned products.
+	 * 
+	 * @param code - int
+	 * @return List<Product> 
+	 * */
+	public List<Product> getProductsList(int code){
+		
+		if(code == 0) {
+			return products;
+		
+		} else if(code == 1) {
+		
+			return forSellProducts;
+		} 
+		
+		return ownedProducts;
 	}
 	
-	/**This method returns (if exists) a list of {@code Product} object owned by a user specified by
-	 * the input {@code ownerName}*/
-	public List<Product> getOwnedProduct(String ownerName){
+	
+	public void updateProductsLists() {
+		List<Product> newFS = new ArrayList<Product>();
+		List<Product> newO = new ArrayList<Product>();
 		
-		List<Product> tmp = new ArrayList<Product>();
-		
-		for(Product prod : products) {
+		for(Product prod:products) {
 			if(prod.getOwnerName().equals(userCredentials.getUsr())) {
-				tmp.add(prod);
+				newO.add(prod);
+			} else {
+				newFS.add(prod);
 			}
 		}
 		
-		return tmp;
+		ownedProducts = newO;
+		forSellProducts = newFS;
 	}
-	
 	
 	
 	
@@ -215,13 +233,10 @@ public class ServerController {
 			return false;
 		}
 		
-		int size = products.size();
 		
 		products.add(newProd);
+		updateProductsLists();
 		
-		for(Product p:products) {
-			System.out.println(p.getName()+"\n");
-		}
 		return true;
 	}
 	

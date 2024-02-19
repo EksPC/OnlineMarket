@@ -21,14 +21,10 @@ import javafx.scene.text.Text;
  * It creates and update the list of {@code Products}.*/
 public class ProductsController{
 	
-	private ScrollPane root = new ScrollPane();
 	private String productPath = "/fxml/product.fxml";
-	
-	
-	private MainController controller;
-	
-	public ProductsController(MainController cont){
-		this.controller = cont;
+		
+	public ProductsController(){
+		
 	}
 	
 	/**This method creates a VBox object and returns it. The VBox contains multiple HBoxes, each of them containing

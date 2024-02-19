@@ -2,3 +2,10 @@ Lollipop;ll01;12.3;p
 luna;lu12;10.2;p
 biscotto;bb01;10.99;cleme
 Cocaina (2g);cc01;149.99;p
+Prova;PP01;123.12;pippo
+Coca Cola;CC01;112.12;pippo
+Fanta;FF01;12.1;pippo
+Cane da caccia;CA01;1200.12;pippo
+Piastra;PI01;123.12
+Pioppo;PO01;12.3;
+Procione (impagliato);PR01;13.5;

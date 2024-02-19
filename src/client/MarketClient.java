@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.security.SignatureException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -16,7 +16,6 @@ import client.controllers.MainController;
 import entities.CredentialsCouple;
 import entities.Product;
 import entities.SingleMessage;
-import javafx.scene.Scene;
 
 public class MarketClient{
 	
@@ -28,13 +27,11 @@ public class MarketClient{
 	static private Socket server = null;
 	static private ObjectOutputStream socketOutput = null;
 	static private ObjectInputStream socketInput = null;
-	static private CredentialsCouple credentials = null;
 	
-	static private List<Product> products = null;
-	static private List<Product> ownedProducts = null;
+	static private List<Product> forSellProducts = new ArrayList<Product>();
+	static private List<Product> ownedProducts = new ArrayList<Product>();
 	
 	private static Object response = null;
-	private static Scene marketScene = null;
 	
 	private static MainController controller = null;
 	
@@ -61,10 +58,10 @@ public class MarketClient{
 		return authenticationState;
 	}
 	
-	public List<Product> getProducts(int type){
-		if(type == 1) {
-			return products;
-		} else if(type == 2) {
+	public List<Product> getProducts(int code){
+		if(code == 1) {
+			return forSellProducts;
+		} else if(code == 2) {
 			return ownedProducts;
 		}
 		else return null;
@@ -147,7 +144,7 @@ public class MarketClient{
 				
 				System.out.println("Authenticated, welcome back " + credentials.getUsr());
 				authenticationState = true;
-				products = (List<Product>) socketInput.readObject();
+				forSellProducts = (List<Product>) socketInput.readObject();
 				return true;
 			
 			} else {
@@ -185,8 +182,10 @@ public class MarketClient{
 			socketOutput.flush();
 			
 			switch(code) {
+			
 			case 1: //list of products
-				products = (List<Product>) socketInput.readObject();
+				
+				forSellProducts = (List<Product>) socketInput.readObject();
 			case 2: //owned Products
 				ownedProducts = (List<Product>) socketInput.readObject();
 				break;
@@ -250,7 +249,7 @@ public class MarketClient{
 	 * @return status of connection
 	 * */
 	private static int setConnection() {
-		//TODO implement a logger
+		
 		logger.log(Level.FINE,"CLIENT - setConnection executed");
 		try {
 			//connectionState METHODS
@@ -293,7 +292,7 @@ public class MarketClient{
 		try {
 			logger.log(Level.FINE,"CLIENT - closing connection...");
 			SingleMessage msg = new SingleMessage(false, false);
-			msg.setRequest(5);
+			msg.setRequest(0);
 			socketOutput.writeObject(msg);
 			socketOutput.flush();
 			socketInput.close();
@@ -301,7 +300,7 @@ public class MarketClient{
 			server.close();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			logger.log(Level.FINE,e.getLocalizedMessage());
 		}
 	}

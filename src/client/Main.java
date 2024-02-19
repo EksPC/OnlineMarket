@@ -12,11 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-/*TODO
- * - Broken pipe when closing with "quit" button
- * - Product handling
- * */
-
 
 /**
  * This class displays the application to the user.
@@ -26,7 +21,6 @@ public class Main extends Application{
 	private final MainController controller = new MainController(this);
 	
 	private Stage primaryStage;
-	private Scene currentScene;
 	private BorderPane view;
 	
 	

@@ -16,7 +16,6 @@ public class Product implements Serializable{
 	private String id;
 	private String name;
 	private String ownerName = "";
-	private String sellerName = "";
 	private double price;
 	private boolean forSale;
 	
