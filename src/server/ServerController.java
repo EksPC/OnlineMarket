@@ -124,7 +124,7 @@ public class ServerController {
 		//Variables definition
 		String name, id;
 		String owner = new String();
-		int price = 0;
+		Double price = 0.0;
 		
 		//Delimiters for file-line handling
 		int firstDelimiter = line.indexOf(';');
@@ -144,7 +144,7 @@ public class ServerController {
 		}
 		
 		try {
-			price = Integer.parseInt(line.substring(secondDelimiter+1,thirdDelimiter));
+			price = Double.parseDouble(line.substring(secondDelimiter+1,thirdDelimiter));
 			
 		} catch (NumberFormatException ne) {
 //			logger.log(Level.SEVERE,"Conversion error (parseInt) -> Message:\n" + ne.getMessage());
@@ -203,19 +203,41 @@ public class ServerController {
 	/**
 	 * This method upload a product (if the id is valid) by weriting it on the database.
 	 * @return boolean*/
-	public boolean uploadProduct(Product newProd) throws IOException {
+	public boolean uploadProduct(String prod) throws IOException {
+		
+		if(prod == null) {
+			return false;
+		}
+		
+		Product newProd = makeProduct(prod);
 		
 		if(!checkUpload(newProd)) {
 			return false;
 		}
 		
-		BufferedWriter writer = new BufferedWriter(new FileWriter(storageFileName));
-		writer.write(newProd.toString());
+		int size = products.size();
 		
-		if(writer != null) {
-			writer.close();
+		products.add(newProd);
+		
+		for(Product p:products) {
+			System.out.println(p.getName()+"\n");
 		}
 		return true;
+	}
+	
+	
+	/**This method uploads the storage file at the end of every client session by fully re-writing
+	 * the storage file.*/
+	public void updateProductsFile() throws IOException{
+		
+		FileWriter fWriter = new FileWriter(storageFileName);
+		BufferedWriter writer = new BufferedWriter(fWriter);
+
+		for(Product p : products) {
+			writer.write(p.toString());
+			writer.newLine();
+		}
+		writer.close();
 	}
 	
 	
@@ -226,10 +248,9 @@ public class ServerController {
 	 * @return boolean*/
 	private boolean checkUpload(Product prod) {
 		for(Product p : products) {
-			if(p.getId() == prod.getId()) {
+			if(p.getId().equals(prod.getId())) {
 				return false;
 			}
-			
 		}
 		return true;
 	}

@@ -39,8 +39,8 @@ public class UploaderController implements Initializable{
 		Double price = Double.parseDouble(priceField.getText());
 		String id = idField.getText();
 		
-		Product newProduct = new Product(name, id, price);
-		newProduct.setOwnerName(controller.getCredentials().getUsr());
+		Product newProduct = new Product(id, name, price);
+//		newProduct.setOwnerName(controller.getCredentials().getUsr());
 		
 		warningText.setText("Uploading...");
 		controller.uploadProduct(newProduct);

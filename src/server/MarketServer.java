@@ -188,18 +188,23 @@ public class MarketServer {
 	private static void handleRequests() {
 		try {
 			
+				String prod = "";
+				Object buf;
+				SingleMessage req = new SingleMessage(connectionState, authenticationState);
 				
 				while (connectionState) {
-					System.out.println("Handling single request");
+					
 					//Read from socket
-					Object buf = socketInput.readObject();
+					buf = socketInput.readObject();
 					if(buf.equals(null)) {
 						System.out.println("buf is null");
 						continue;
 					}
 					
 					logger.log(Level.FINE, "Buf read: " + buf.toString());
-					SingleMessage req = (SingleMessage) buf;
+					
+					System.out.println(buf.getClass());
+					req = (SingleMessage) buf;
 					switch (req.getRequest()) {
 					case (0):
 						close();
@@ -212,7 +217,7 @@ public class MarketServer {
 						socketOutput.writeObject(controller.getProductsList());
 						socketOutput.flush();
 					case (2):
-						System.out.println("Sending " + userCredentials.getUsr() + " it's list!");
+						
 						if(controller.getOwnedProduct(userCredentials.getUsr()) == null) {
 							logger.log(Level.WARNING,"Owned products list is null.\n");
 							return;
@@ -228,23 +233,13 @@ public class MarketServer {
 						//Restituzione prodotto
 
 					case (5):
-						logger.log(Level.FINE,"Upload request.\n");
-						
 						SingleMessage res = new SingleMessage(connectionState, authenticationState);
-						Product newProd = (Product) socketInput.readObject();
-						if(newProd == null) {
-							System.out.println("SERVER - req 5 - no product.");
-							return;
-						}
-						
-						if(controller.uploadProduct(newProd)) {
-							res.setRequest(1);
-						} else {
-							res.setRequest(0);
-						}
+						res.setRequest(1);
 						
 						socketOutput.writeObject(res);
+						socketOutput.flush();
 						
+						handleUpload();
 					}
 				}
 		} catch (IOException e){
@@ -255,6 +250,33 @@ public class MarketServer {
 			System.out.println("comunication message error - " + cnfe.getMessage());
 			close();
 		}
+	}
+	
+	
+	/**This method reads the socket to get the product to upload, checks if it's id is valid and 
+	 * writes the result on the socket.*/
+	private static void handleUpload() throws IOException, ClassNotFoundException{
+		SingleMessage req = new SingleMessage(connectionState, authenticationState);
+		String prod = new String();
+		Object buf = new Object();
+		//2. Receive an object from client 
+		while(!(buf = socketInput.readObject()).getClass().equals(String.class)) {
+			;
+		}
+		//TODO DEBUG
+		prod = (String) buf;
+		System.out.println("PRODUCT: " +prod);
+		
+		//3. Check
+		if(controller.uploadProduct(prod)) {
+			req.setRequest(1);
+		} else {
+			req.setRequest(0);
+		}
+		
+		socketOutput.writeObject(req);
+		socketOutput.flush();
+			
 	}
 
 	
@@ -271,11 +293,14 @@ public class MarketServer {
 		try {
 			connectionState = false;
 			client.close();
+			controller.updateProductsFile();
 			socketInput.close();
 			socketOutput.close();
 			
+			
 		} catch(IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getLocalizedMessage());
+			return;
 		}
 		
 	}

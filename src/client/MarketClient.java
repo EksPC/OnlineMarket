@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.security.SignatureException;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -170,7 +171,7 @@ public class MarketClient{
 	/**
 	 * This method simply sends a message via socket to the server and get the response*/
 	@SuppressWarnings("unchecked")
-	public void startCommunication(int code, Product prod) {
+	public void startCommunication(int code, String prod) {
 		/*S:
 		 * 1. Products (automatic)
 		 * */
@@ -191,21 +192,13 @@ public class MarketClient{
 				break;
 				
 			case 5: //upload request
-				//writing request
-				socketOutput.writeObject(message);
-				socketOutput.flush();
-
-				//writing product to upload
-				socketOutput.writeObject(prod);
-				socketOutput.flush();
-				
-				message = (SingleMessage) socketInput.readObject();
-				controller.printUploadStatus(message.getRequest());
+				notifyUpload();
+				sendProductToUpload(prod);
 			}
 			
 		
 		} catch (IOException e) {
-			logger.log(Level.WARNING,e.getStackTrace().toString());
+			logger.log(Level.WARNING,e.getLocalizedMessage());
 		}catch(ClassNotFoundException cnf) {
 			logger.log(Level.WARNING,cnf.getLocalizedMessage());
 			System.out.println("CLIENT - Credentials check error- " + cnf.getLocalizedMessage());
@@ -213,6 +206,40 @@ public class MarketClient{
 			logger.log(Level.WARNING, "List error.\n");
 		}
 	}
+	
+	
+	
+	private void notifyUpload() throws IOException, ClassNotFoundException{
+		SingleMessage req = new SingleMessage(connectionState, authenticationState);
+		SingleMessage res = new SingleMessage(connectionState, authenticationState);
+		req.setRequest(5);
+		
+		socketOutput.writeObject(req);
+		socketOutput.flush();
+		
+		res = (SingleMessage)socketInput.readObject();
+		//Some kind of error
+		if(res.getRequest() == -1) {
+			logger.log(Level.WARNING,"Update request failed.");
+			return;
+		}
+		
+	}
+	
+	
+	/**
+	 * This method handles the communication with the server to upload a product.*/
+	private void sendProductToUpload(String prod) throws IOException, ClassNotFoundException{
+		
+		socketOutput.writeObject(prod);
+		socketOutput.flush();
+		
+		SingleMessage res = (SingleMessage) socketInput.readObject();
+		
+		controller.printUploadStatus(res.getRequest());
+			
+	}
+	
 	
 	
 	/**

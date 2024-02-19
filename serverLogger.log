@@ -1,15 +1,24 @@
-Feb 16, 2024 8:31:52 PM server.MarketServer main
+Feb 19, 2024 5:26:23 PM server.MarketServer main
 FINE: Server on, waiting for connection...
-Feb 16, 2024 8:31:57 PM server.MarketServer checkLogin
-FINE: Credentials: pippo 0000
-Feb 16, 2024 8:31:57 PM server.MarketServer checkLogin
-FINE: pippo authenticated.
-Feb 16, 2024 8:32:07 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@4ae82894
-Feb 16, 2024 8:32:07 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@15b3e5b
-Feb 16, 2024 8:32:13 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@4b53f538
-Feb 16, 2024 8:32:13 PM server.MarketServer handleRequests
-FINE: Upload request.
-
+Feb 19, 2024 5:26:28 PM server.MarketServer checkLogin
+FINE: Credentials: p 0
+Feb 19, 2024 5:26:28 PM server.MarketServer checkLogin
+FINE: p authenticated.
+Feb 19, 2024 5:26:32 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@72a7c7e0
+Feb 19, 2024 5:26:35 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@70e8f8e
+Feb 19, 2024 5:26:35 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@5bd03f44
+Feb 19, 2024 5:26:36 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@5a63f509
+Feb 19, 2024 5:26:36 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@34b7ac2f
+Feb 19, 2024 5:26:37 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@4b0b0854
+Feb 19, 2024 5:26:37 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@10e41621
+Feb 19, 2024 5:26:37 PM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@2667f029
+Feb 19, 2024 5:26:37 PM server.MarketServer main
+FINE: Server closing.

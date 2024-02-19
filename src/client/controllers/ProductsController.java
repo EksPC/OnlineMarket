@@ -24,9 +24,7 @@ public class ProductsController{
 	private ScrollPane root = new ScrollPane();
 	private String productPath = "/fxml/product.fxml";
 	
-	private List<Product> products;
 	
-	private StackPane lastHandled;
 	private MainController controller;
 	
 	public ProductsController(MainController cont){
@@ -94,15 +92,15 @@ public class ProductsController{
 		Label price = (Label) productPane.lookup("#priceField");
 		price.setText("$"+Double.toString(prod.getPrice()));
 		
-		if(prod.hasOwner()) {
-			
-			owner.setText(prod.getOwnerName());
-			ownerTxt.setText("Owner: ");
-		
-		} else {
-			ownerTxt.setText("");
-			owner.setText("");
-		}
+//		if(prod.hasOwner()) {
+//			
+//			owner.setText(prod.getOwnerName());
+//			ownerTxt.setText("Owner: ");
+//		
+//		} else {
+//			ownerTxt.setText("");
+//			owner.setText("");
+//		}
 		return productPane;
 	}
 	

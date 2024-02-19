@@ -99,10 +99,10 @@ public class MainController {
 //		return true;
 //	}
 //	
-	
-	public void printMsg(String msg) {
-		mainApp.printMessage(msg);
-	}
+//	
+//	public void printMsg(String msg) {
+//		mainApp.printMessage(msg);
+//	}
 	
 	/**This method checks whether the login is valid or not by invoking the {@code MarketClient}. 
 	 * The method is triggered when the "SUBMIT" button of the login view is pressed.*/								
@@ -159,23 +159,16 @@ public class MainController {
 	 * code = 2 - owned products
 	 * */
 	public void showProducts(int code) {
-		getUpdatedProducts();
+		
+		client.startCommunication(code, null);
+		if(client.getProducts(code).isEmpty()) {
+			return;
+		}
 		ScrollPane cur = new ScrollPane(productsController.getProductsView(client.getProducts(code)));
 		mainApp.setNewCenter(cur,null);
 	}
 
-	/**This method triggers a client-server communication requesting both the list of owned forSaleProducts and
-	 * the list of products for sale. */
-	private void getUpdatedProducts() {
-		if(toUpdate) {
-			client.startCommunication(2,null);
-			ownedProducts = client.getProducts(2);
-			
-			client.startCommunication(1,null);
-			forSaleProducts = client.getProducts(1);
-			toUpdate = false;
-		}
-	}
+	
 	
 	/** This method displays the product uploader on the main app when the respective button is clicked.
 	 * */
@@ -195,11 +188,12 @@ public class MainController {
 	/** This method handles the product upload, an event triggered by the user to upload a product.
 	 * */
 	public void uploadProduct(Product prod) {
-		client.startCommunication(5, prod);
+		client.startCommunication(5, prod.toString());
 	}
 	
 	public void printUploadStatus(int st) {
 		uploaderController.printStatusMessage(st==1);
+		toUpdate = (st == 1);
 	}
 
 	

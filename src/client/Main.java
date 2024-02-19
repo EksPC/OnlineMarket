@@ -60,10 +60,8 @@ public class Main extends Application{
 	public void setNewCenter(ScrollPane center1, StackPane center2) {
 		if(center2 == null) {
 			view.setCenter(center1);
-			System.out.println("Center 1");
 		} else {
 			view.setCenter(center2);
-			System.out.println("Center 2");
 		}
 		
 	}
