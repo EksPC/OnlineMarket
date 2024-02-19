@@ -8,3 +8,21 @@ However, I only implemented really basic and raw features, like a text-file data
 kind of inefficient algorithms for product-searching and a basic UI. 
 
 I'm overall proud of my work but I'm looking to do better next time.
+
+
+
+
+## CLIENT POV
+After starting the application, the client has to log himself in by filling two simple fields: username and password. 
+--- image ---
+Once authenticated, the client can navigate through the app using lateral buttons. There four buttons: 
+  - Products (default):
+    Shows the list of buyable products. Here a client can buy a product by clicking
+    on it and select the option "BUY".
+
+  - Return:
+    In this section a client can see it's owned products and, eventually, return        them by clicking their icon and selecting the option "RETURN".
+
+  - Upload:
+    In this section a client can upload a product by inserting it's name, ID and        price. If the product's ID is already taken, a message appears on the screen 
+    and the client has to choose another one. 
