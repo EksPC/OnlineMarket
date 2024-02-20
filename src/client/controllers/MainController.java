@@ -1,7 +1,7 @@
 package client.controllers;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -31,8 +31,8 @@ public class MainController {
 	public Main mainApp;
 	public LoaderController loaders;
 	private StackPane uploader = null;
-	public List<Product> forSaleProducts;
-	public List<Product> ownedProducts;
+	public List<Product> forSaleProducts = new ArrayList<Product>();
+	public List<Product> ownedProducts = new ArrayList<Product>();
 	
 	private LoginController loginController;
 	private AppController appController;
@@ -63,7 +63,7 @@ public class MainController {
 		loginController = new LoginController(this);
 		loaders.getLoginLoader().setController(loginController);
 		
-		productsController = new ProductsController();
+		productsController = new ProductsController(this);
 		
 		uploaderController = new UploaderController(this);
 		loaders.getUploaderLoader().setController(uploaderController);
@@ -118,12 +118,14 @@ public class MainController {
 	 * code = 2 - owned products
 	 * */
 	public void showProducts(int code) {
+		updateProducts();
 		
 		if(client.getProducts(code).isEmpty()) {
 			ScrollPane empty = new ScrollPane();
 			mainApp.setNewCenter(empty, null);
 			return;
 		}
+		
 		ScrollPane cur = new ScrollPane(productsController.getProductsView(client.getProducts(code)));
 		mainApp.setNewCenter(cur,null);
 	}
@@ -161,10 +163,31 @@ public class MainController {
 	/**This method triggers client requests of owned products and for-sell products. It is triggered
 	 * after upload/return/buy requests from client.*/
 	private void updateProducts() {
-		client.startCommunication(1, null);
-		client.startCommunication(2, null);
+		
+		boolean b1 = client.startCommunication(1, null);
+		boolean b2 = client.startCommunication(2, null);
+		System.out.println("Update: " + b1 + "\t" + b2);
 	}
 	
+	/**This method allows the client to buy or return a product.
+	 * Based on the current page, the client can buy (page 0) or return (page 1) a specific product.
+	 * After the action the client sends a request to the server.*/
+	public void productClicked(String id) {
+		//Se 0 --> display buy button
+		appController.displayMultiPurposeBtn(id);
+	}
+	
+	
+	
+	public void buyProduct(String id) {
+		client.startCommunication(3, id);
+		showProducts(1);
+	}
+	
+	public void returnProduct(String id) {
+		client.startCommunication(4, id);
+		showProducts(2);
+	}
 	
 	
 }

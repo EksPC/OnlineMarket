@@ -28,7 +28,7 @@ public class MarketClient{
 	static private ObjectOutputStream socketOutput = null;
 	static private ObjectInputStream socketInput = null;
 	
-	static private List<Product> forSellProducts = new ArrayList<Product>();
+	static private List<Product> forSaleProducts = new ArrayList<Product>();
 	static private List<Product> ownedProducts = new ArrayList<Product>();
 	
 	private static Object response = null;
@@ -60,11 +60,12 @@ public class MarketClient{
 	
 	public List<Product> getProducts(int code){
 		if(code == 1) {
-			return forSellProducts;
+			return forSaleProducts;
 		} else if(code == 2) {
 			return ownedProducts;
+		} else {
+			return new ArrayList<Product>();
 		}
-		else return null;
 		
 	}
 	
@@ -127,6 +128,7 @@ public class MarketClient{
 	 * */
 	@SuppressWarnings("unchecked")
 	public boolean checkCredentials(CredentialsCouple credentials) {
+
 		//CREDENTIALS INPUT
 		logger.log(Level.FINE,"CLIENT - checkCredentials executed");
 		try {
@@ -144,7 +146,7 @@ public class MarketClient{
 				
 				System.out.println("Authenticated, welcome back " + credentials.getUsr());
 				authenticationState = true;
-				forSellProducts = (List<Product>) socketInput.readObject();
+				forSaleProducts = (List<Product>) socketInput.readObject();
 				return true;
 			
 			} else {
@@ -168,16 +170,17 @@ public class MarketClient{
 	/**
 	 * This method simply sends a message via socket to the server and get the response*/
 	@SuppressWarnings("unchecked")
-	public void startCommunication(int code, String prod) {
+	public boolean startCommunication(int code, String prod) {
 		/*S:
 		 * 1. Products (automatic)
 		 * */
-		logger.log(Level.FINE,"Sending communication - code is " + code);
+		logger.log(Level.FINE,"Sending request - " + code);
 		SingleMessage message = new SingleMessage(true, true);
 		message.setRequest(code);
+		message.str = prod;
 		
 		try {
-			logger.log(Level.FINE,"request: "+message.getRequest());
+			
 			socketOutput.writeObject(message);
 			socketOutput.flush();
 			
@@ -185,12 +188,30 @@ public class MarketClient{
 			
 			case 1: //list of products
 				
-				forSellProducts = (List<Product>) socketInput.readObject();
+				forSaleProducts = (List<Product>) socketInput.readObject();
+				if(forSaleProducts != null) {
+					return true;
+				}
+				return false;
 			case 2: //owned Products
 				ownedProducts = (List<Product>) socketInput.readObject();
-				break;
+				if(ownedProducts != null) {
+					return true;
+				}
+				return false;
+				
+				
+			case 3: //buy
+				
+				SingleMessage res = (SingleMessage) socketInput.readObject();
+				return (res.getRequest()==1);
+			case 4:
+				
+				SingleMessage resp = (SingleMessage) socketInput.readObject();
+				return (resp.getRequest()==1);
 				
 			case 5: //upload request
+				
 				notifyUpload();
 				sendProductToUpload(prod);
 			}
@@ -198,16 +219,23 @@ public class MarketClient{
 		
 		} catch (IOException e) {
 			logger.log(Level.WARNING,e.getLocalizedMessage());
+			return false;
 		}catch(ClassNotFoundException cnf) {
 			logger.log(Level.WARNING,cnf.getLocalizedMessage());
 			System.out.println("CLIENT - Credentials check error- " + cnf.getLocalizedMessage());
+			return false;
 		} catch (IllegalStateException is) {
 			logger.log(Level.WARNING, "List error.\n");
+			return false;
 		}
+		return false;
 	}
 	
 	
+
 	
+	
+	/**This method notifies an upload to the server by writing multiple messages.*/
 	private void notifyUpload() throws IOException, ClassNotFoundException{
 		SingleMessage req = new SingleMessage(connectionState, authenticationState);
 		SingleMessage res = new SingleMessage(connectionState, authenticationState);

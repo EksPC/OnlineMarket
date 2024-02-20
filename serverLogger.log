@@ -1,26 +1,102 @@
-Feb 19, 2024 7:07:25 PM server.MarketServer main
+Feb 20, 2024 2:21:20 AM server.MarketServer main
 FINE: Server on, waiting for connection...
-Feb 19, 2024 7:07:31 PM server.MarketServer checkLogin
-FINE: Credentials: pippo 9000
-Feb 19, 2024 7:07:31 PM server.MarketServer unsuccessfulLoginAction
-SEVERE: not authenticated
-Feb 19, 2024 7:07:35 PM server.MarketServer checkLogin
-FINE: Credentials: pippo 0000
-Feb 19, 2024 7:07:35 PM server.MarketServer checkLogin
-FINE: pippo authenticated.
-Feb 19, 2024 7:07:51 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@34b7ac2f
-Feb 19, 2024 7:07:51 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@19bb07ed
-Feb 19, 2024 7:07:51 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@635eaaf1
-Feb 19, 2024 7:08:17 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@5c30a9b0
-Feb 19, 2024 7:08:17 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@7a69b07
-Feb 19, 2024 7:08:18 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@50b472aa
-Feb 19, 2024 7:16:06 PM server.MarketServer handleRequests
-FINE: Buf read: entities.SingleMessage@31368b99
-Feb 19, 2024 7:16:06 PM server.MarketServer main
+Feb 20, 2024 2:21:24 AM server.MarketServer checkLogin
+FINE: Credentials: p 0
+Feb 20, 2024 2:21:24 AM server.MarketServer checkLogin
+FINE: p authenticated.
+Feb 20, 2024 2:21:27 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@63355449
+Feb 20, 2024 2:21:27 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@9353778
+Feb 20, 2024 2:21:28 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@6ca8564a
+Feb 20, 2024 2:21:28 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@3d74bf60
+Feb 20, 2024 2:21:28 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@15eb5ee5
+Feb 20, 2024 2:21:30 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@39529185
+Feb 20, 2024 2:21:30 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@72f926e6
+Feb 20, 2024 2:21:34 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@3daa422a
+Feb 20, 2024 2:21:34 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@1cbbffcd
+Feb 20, 2024 2:21:34 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@481a996b
+Feb 20, 2024 2:21:37 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@7ed7259e
+Feb 20, 2024 2:21:37 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@28eaa59a
+Feb 20, 2024 2:21:39 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@3427b02d
+Feb 20, 2024 2:21:39 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@647e447
+Feb 20, 2024 2:21:43 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@41fbdac4
+Feb 20, 2024 2:21:43 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@3c407114
+Feb 20, 2024 2:21:45 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@35ef1869
+Feb 20, 2024 2:21:45 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@c33b74f
+Feb 20, 2024 2:21:50 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@130161f7
+Feb 20, 2024 2:21:50 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@619713e5
+Feb 20, 2024 2:21:50 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@68999068
+Feb 20, 2024 2:22:06 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@2ef3eef9
+Feb 20, 2024 2:22:06 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@291ae
+Feb 20, 2024 2:22:06 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@50eac852
+Feb 20, 2024 2:22:08 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@2f7298b
+Feb 20, 2024 2:22:08 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@1ea9f6af
+Feb 20, 2024 2:22:08 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@5119fb47
+Feb 20, 2024 2:22:11 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@20deea7f
+Feb 20, 2024 2:22:11 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@1dde4cb2
+Feb 20, 2024 2:22:11 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@20ce78ec
+Feb 20, 2024 2:22:12 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@56620197
+Feb 20, 2024 2:22:12 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@6eda5c9
+Feb 20, 2024 2:22:16 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@55b7a4e0
+Feb 20, 2024 2:22:16 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@192d43ce
+Feb 20, 2024 2:22:16 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@1afd44cb
+Feb 20, 2024 2:22:19 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@1ab3a8c8
+Feb 20, 2024 2:22:19 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@333291e3
+Feb 20, 2024 2:22:19 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@40ef3420
+Feb 20, 2024 2:22:25 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@6e171cd7
+Feb 20, 2024 2:22:25 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@795cd85e
+Feb 20, 2024 2:22:25 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@f5ac9e4
+Feb 20, 2024 2:22:26 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@dbf57b3
+Feb 20, 2024 2:22:26 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@61862a7f
+Feb 20, 2024 2:22:26 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@7334aada
+Feb 20, 2024 2:22:27 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@4d9e68d0
+Feb 20, 2024 2:22:27 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@42e99e4a
+Feb 20, 2024 2:22:47 AM server.MarketServer handleRequests
+FINE: Buf read: entities.SingleMessage@14dd9eb7
+Feb 20, 2024 2:22:47 AM server.MarketServer main
 FINE: Server closing.

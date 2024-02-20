@@ -194,6 +194,7 @@ public class MarketServer {
 					
 					//Read from socket
 					buf = socketInput.readObject();
+					
 					if(buf.equals(null)) {
 						System.out.println("buf is null");
 						continue;
@@ -214,6 +215,7 @@ public class MarketServer {
 						}
 						socketOutput.writeObject(controller.getProductsList(1));
 						socketOutput.flush();
+						break;
 					case (2):
 						
 						if(controller.getProductsList(2) == null) {
@@ -226,16 +228,39 @@ public class MarketServer {
 						break;
 					case (3):
 						//Acquisto prodotto
+						System.out.println("String "+ req.str +" received.");
+						SingleMessage res = new SingleMessage(connectionState, authenticationState);
 						
+						if(controller.buyProduct(req.str)) {
+							res.setRequest(1);
+						} else {
+							res.setRequest(0);
+						}
+						
+						socketOutput.writeObject(res);
+						socketOutput.flush();
+						break;
 
 					case (4):
 						//Restituzione prodotto
-
-					case (5):
-						SingleMessage res = new SingleMessage(connectionState, authenticationState);
-						res.setRequest(1);
+						System.out.println("String "+ req.str +" received.");
+						SingleMessage response = new SingleMessage(connectionState, authenticationState);
 						
-						socketOutput.writeObject(res);
+						if(controller.returnProduct(req.str)) {
+							response.setRequest(1);
+						} else {
+							response.setRequest(0);
+						}
+						
+						socketOutput.writeObject(response);
+						socketOutput.flush();
+						break;
+						
+					case (5):
+						SingleMessage resp = new SingleMessage(connectionState, authenticationState);
+						resp.setRequest(1);
+						
+						socketOutput.writeObject(resp);
 						socketOutput.flush();
 						
 						handleUpload();

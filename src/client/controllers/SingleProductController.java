@@ -2,14 +2,10 @@ package client.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import client.controllers.MainController;
 import entities.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-/*
- * TODO
- * - owner field
- * */
 import javafx.scene.text.Text;
 
 
@@ -28,9 +24,21 @@ public class SingleProductController implements Initializable{
 	public Text ownerText;
 	@FXML 
 	public Text ownerField;
+	
+	
+	@FXML
+	/**
+	 * This method handles the product click:
+	 * If the client is in the "Products" section, a click allows him to buy a product.
+	 * If the client is in the "Return" section, a click allows him to return a product.*/
+	private void handleProductClick() {
 		
+	}
+	
+	private MainController controller;	
+	
 	/***/
-	public SingleProductController(Product product) {
+	public SingleProductController(Product product, MainController contr) {
 		nameField.setText(product.getName());
 		idField.setText(product.getId());
 		priceField.setText(Double.toString(product.getPrice()));
@@ -39,6 +47,7 @@ public class SingleProductController implements Initializable{
 			ownerText.setText("owner");
 			ownerField.setText(product.getOwnerName());
 		}
+		this.controller = contr;
 	}
 
 	

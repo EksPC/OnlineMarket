@@ -2,14 +2,12 @@
 	
 }
 
+.single-product {
+	-fx-background-color: white;
+}
 .single-product:hover{
 	-fx-border-color: rgba(102, 153, 204, 1);
 }
-
-.single-product:pressed{
-	-fx-background-color: rgba(102, 153, 204, 0.25);
-}
-
 
 
 
@@ -19,6 +17,26 @@
 
 	.app-btn:hover{
 		-fx-background-color: rgba(102, 153, 204, 0.75);
+	}
+	
+.multi-purpose-btn {
+	-fx-background-color: rgba(0,0,0,0);
+	-fx-content-display: none;
+}
+	
+.multi-purpose-btn-buy {
+	-fx-background-color: green
+}
+	.multi-purpose-btn-buy:hover {
+		-fx-background-color: rgba(0, 128, 0, 0.75);
+	}
+
+.multi-purpose-btn-return {
+	-fx-background-color: pink;
+}
+
+	.multi-purpose-btn-return:hover {
+		-fx-background-color: rgba(255, 192, 203,0.75);
 	}
 
 .quit-btn{

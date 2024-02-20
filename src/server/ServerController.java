@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class ServerController {
 	private static List<CredentialsCouple> credentials = new ArrayList<>();
 	private static List<Product> products = new ArrayList<>();
 	private static List<Product> ownedProducts = new ArrayList<Product>();
-	private static List<Product> forSellProducts = new ArrayList<>();
+	private static List<Product> forSaleProducts = new ArrayList<>();
  	
 	private static final String credentialsFileName = "resources/credentials.txt";
 	private static final String storageFileName = "resources/storage.txt";
@@ -70,13 +71,14 @@ public class ServerController {
 		
 		} else if(code == 1) {
 		
-			return forSellProducts;
+			return forSaleProducts;
 		} 
 		
 		return ownedProducts;
 	}
 	
 	
+	/**This method updates the two available products list (products for sale and products owned by the client).*/
 	public void updateProductsLists() {
 		List<Product> newFS = new ArrayList<Product>();
 		List<Product> newO = new ArrayList<Product>();
@@ -90,7 +92,7 @@ public class ServerController {
 		}
 		
 		ownedProducts = newO;
-		forSellProducts = newFS;
+		forSaleProducts = newFS;
 	}
 	
 	
@@ -110,8 +112,7 @@ public class ServerController {
 	    try {
 	        // Initialise InputStreamReader and BufferedReader
 	        scanner = new Scanner(new File(storageFileName));
-	
-//	        logger.log(Level.FINE,"reading forSaleProducts");
+
 	        // Read the content from the InputStream
 	        while (scanner.hasNextLine()) {
 	        	line = scanner.nextLine();
@@ -120,7 +121,7 @@ public class ServerController {
 	        	
 	        }
 	    } catch (IOException e) {
-//	        logger.log(Level.SEVERE,"Products reading error - "+e.getLocalizedMessage());
+	    	System.out.println(e.getLocalizedMessage());
 	    } finally {
 	        // Close resources in the finally block to ensure they are always closed
 	    	if(scanner != null) {
@@ -270,4 +271,31 @@ public class ServerController {
 		return true;
 	}
 
-}	
+	/**This method allows a user to buy a product. Basically it re-writes the ownership of a product and updates the lists
+	 * of product with the method {@code updateProductsLists}.*/
+	public boolean buyProduct(String id) {
+		for(int i = 0; i < products.size();i++){
+			if(products.get(i).getId().equals(id)) {
+				
+				products.get(i).setOwnerName(userCredentials.getUsr());
+				updateProductsLists();
+				return true;
+			}
+		}
+		return false;
+	}	
+	
+	
+	/**This method allows a user to return a product owned by the current user.*/
+	public boolean returnProduct(String id) {
+		for(int i = 0; i < products.size();i++){
+			if(products.get(i).getId().equals(id)) {
+				products.get(i).setOwnerName("");
+				updateProductsLists();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+}

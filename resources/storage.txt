@@ -1,11 +1,14 @@
-Lollipop;ll01;12.3;p
-luna;lu12;10.2;p
-biscotto;bb01;10.99;cleme
-Cocaina (2g);cc01;149.99;p
+Lollipop;ll01;12.3;
+luna;lu12;10.2;
+biscotto;bb01;10.99
+Cocaina (2g);cc01;149.99
 Prova;PP01;123.12;pippo
-Coca Cola;CC01;112.12;pippo
-Fanta;FF01;12.1;pippo
-Cane da caccia;CA01;1200.12;pippo
-Piastra;PI01;123.12
-Pioppo;PO01;12.3;
-Procione (impagliato);PR01;13.5;
+Coca Cola;CC01;112.12
+Fanta;FF01;12.1;p
+Cane da caccia;CA01;1200.12
+Piastra;PI01;123.12;p
+Pioppo;PO01;12.3
+Procione (impagliato);PR01;13.5
+Cariola;C120;120.3;p
+Cartina;CC012;10.2
+Lampadina;LP01;12.99;p

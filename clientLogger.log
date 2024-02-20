@@ -1,36 +1,100 @@
-Feb 19, 2024 7:07:27 PM client.MarketClient setConnection
+Feb 20, 2024 2:21:21 AM client.MarketClient setConnection
 FINE: CLIENT - setConnection executed
-Feb 19, 2024 7:07:27 PM client.MarketClient setConnection
+Feb 20, 2024 2:21:21 AM client.MarketClient setConnection
 FINE: CLIENT - connection enstablished
-Feb 19, 2024 7:07:31 PM client.MarketClient checkCredentials
+Feb 20, 2024 2:21:24 AM client.MarketClient checkCredentials
 FINE: CLIENT - checkCredentials executed
-Feb 19, 2024 7:07:31 PM client.MarketClient checkCredentials
-FINE: Not authenticated.
-Feb 19, 2024 7:07:35 PM client.MarketClient checkCredentials
-FINE: CLIENT - checkCredentials executed
-Feb 19, 2024 7:07:50 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 5
-Feb 19, 2024 7:07:50 PM client.MarketClient startCommunication
-FINE: request: 5
-Feb 19, 2024 7:07:51 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 1
-Feb 19, 2024 7:07:51 PM client.MarketClient startCommunication
-FINE: request: 1
-Feb 19, 2024 7:07:51 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 19, 2024 7:07:51 PM client.MarketClient startCommunication
-FINE: request: 2
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 5
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: request: 5
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 1
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: request: 1
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: Sending communication - code is 2
-Feb 19, 2024 7:08:17 PM client.MarketClient startCommunication
-FINE: request: 2
-Feb 19, 2024 7:16:06 PM client.MarketClient close
+Feb 20, 2024 2:21:27 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:27 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:28 AM client.MarketClient startCommunication
+FINE: Sending request - 4
+Feb 20, 2024 2:21:28 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:28 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:30 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:30 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:34 AM client.MarketClient startCommunication
+FINE: Sending request - 3
+Feb 20, 2024 2:21:34 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:34 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:37 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:37 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:39 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:39 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:42 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:43 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:45 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:45 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:21:50 AM client.MarketClient startCommunication
+FINE: Sending request - 3
+Feb 20, 2024 2:21:50 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:21:50 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:06 AM client.MarketClient startCommunication
+FINE: Sending request - 3
+Feb 20, 2024 2:22:06 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:06 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:08 AM client.MarketClient startCommunication
+FINE: Sending request - 3
+Feb 20, 2024 2:22:08 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:08 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:11 AM client.MarketClient startCommunication
+FINE: Sending request - 3
+Feb 20, 2024 2:22:11 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:11 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:12 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:12 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:16 AM client.MarketClient startCommunication
+FINE: Sending request - 4
+Feb 20, 2024 2:22:16 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:16 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:18 AM client.MarketClient startCommunication
+FINE: Sending request - 4
+Feb 20, 2024 2:22:19 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:19 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:25 AM client.MarketClient startCommunication
+FINE: Sending request - 4
+Feb 20, 2024 2:22:25 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:25 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:26 AM client.MarketClient startCommunication
+FINE: Sending request - 4
+Feb 20, 2024 2:22:26 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:26 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:27 AM client.MarketClient startCommunication
+FINE: Sending request - 1
+Feb 20, 2024 2:22:27 AM client.MarketClient startCommunication
+FINE: Sending request - 2
+Feb 20, 2024 2:22:47 AM client.MarketClient close
 FINE: CLIENT - closing connection...

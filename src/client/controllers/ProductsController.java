@@ -1,9 +1,12 @@
 package client.controllers;
 
+import java.awt.Container;
 import java.io.IOException;
 import java.util.List;
 
+import client.Main;
 import entities.Product;
+import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -22,9 +25,11 @@ import javafx.scene.text.Text;
 public class ProductsController{
 	
 	private String productPath = "/fxml/product.fxml";
-		
-	public ProductsController(){
-		
+	private MainController controller;
+	private StackPane selected = new StackPane();
+	
+	public ProductsController(MainController cont){
+		controller = cont;
 	}
 	
 	/**This method creates a VBox object and returns it. The VBox contains multiple HBoxes, each of them containing
@@ -97,7 +102,23 @@ public class ProductsController{
 //			ownerTxt.setText("");
 //			owner.setText("");
 //		}
+		productPane.setOnMouseClicked((MouseEvent event) -> {
+			handleProductClick(id.getText());
+			if(productPane == selected) {
+				return;
+			}
+			selected.setStyle("-fx-background-color: white");
+			productPane.setStyle("-fx-background-color: rgba(102, 153, 204, 0.8)");
+			selected = productPane;
+		});
 		return productPane;
+	}
+	
+	/**This method makes the main controller show the buy/return button in the left buttons section.
+	 * It accepts an ID parameter needed to buy or return the specific product.
+	 * */
+	private void handleProductClick(String id) {
+		controller.productClicked(id);
 	}
 	
 	
