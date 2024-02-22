@@ -30,7 +30,6 @@ import client.MarketClient;
  * @author EksPC
  * 
  * */
-
 public class MarketServer {
 	
 
@@ -55,6 +54,7 @@ public class MarketServer {
 		
 	}
 	
+	/**Getter method used to obtain the current user name.*/
 	public String getUserName() {
 		return userCredentials.getUsr();
 	}
@@ -63,10 +63,8 @@ public class MarketServer {
 	
 	
 	/**
-	 * This method opens the socket port and waits for a connection from 
-	 * client. When the client connects, this method notifies that using
-	 * an object;
-	 * 
+	 * This method opens the socket port and waits for a connection from client.
+	 * When the connection is established, an object is sent through the socket to notify the client.
 	 * */
 	private static boolean openConnection(){
 		try {
@@ -179,10 +177,8 @@ public class MarketServer {
 	
 	
 	/**
-	 * The {@code connection} method establishes a connection
-	 * between client and server at the specified port number.
-	 * The client-server communication works with an exchange
-	 * of a {@code MarketMessage} object, that contains 
+	 * This method handles clients requests by reading and then answering them with a response message.
+	 * Requests purpose are written in {@code marketClient} section. 
 	 * */
 	private static void handleRequests() {
 		try {
@@ -199,11 +195,9 @@ public class MarketServer {
 						System.out.println("buf is null");
 						continue;
 					}
-					
-					logger.log(Level.FINE, "Buf read: " + buf.toString());
-					
-					System.out.println(buf.getClass());
+										
 					req = (SingleMessage) buf;
+					logger.log(Level.FINE, "Request - " + req.getRequest());
 					switch (req.getRequest()) {
 					case (0):
 						close();
@@ -267,7 +261,7 @@ public class MarketServer {
 					}
 				}
 		} catch (IOException e){
-			System.out.println("connection error - " + e.getMessage());
+			System.out.println("connection interrupted - " + e.getMessage());
 			close();
 		}
 		catch (ClassNotFoundException cnfe) {
@@ -334,7 +328,6 @@ public class MarketServer {
 	 * */
 	private static boolean setLogger() {
 		
-		System.out.println("Creatig logger");
 		LogManager.getLogManager().reset();
 		logger.setLevel(Level.ALL);
 		
@@ -345,9 +338,10 @@ public class MarketServer {
 			logFile.setFormatter(new SimpleFormatter());
 			
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Logger not initialized");
+			System.out.println("Logger not initialized");
 			return false;
 		}
+		System.out.println("Logger on");
 		return true;
 	}
 	

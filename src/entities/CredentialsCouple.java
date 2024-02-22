@@ -3,8 +3,7 @@ package entities;
 import java.io.Serializable;
 
 /**
- * This class represents a couple of credentials
- * username-password
+ * This class represents a couple of credentials username-password
  * */
 public class CredentialsCouple implements Serializable {
 

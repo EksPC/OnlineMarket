@@ -1,27 +1,21 @@
 package client.controllers;
 
-import java.awt.Container;
+
 import java.io.IOException;
 import java.util.List;
-
-import client.Main;
 import entities.Product;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-//NOTE
-/*
- * ScrollPane con HBox sopra in cui in ogni */
 
 
-/**This class handles the forSaleProducts list screen.
- * It creates and update the list of {@code Products}.*/
+
+/**This class creates the products list screen (FOR SALE and YOUR PRODUCTS).*/
 public class ProductsController{
 	
 	private String productPath = "/fxml/product.fxml";
@@ -32,8 +26,8 @@ public class ProductsController{
 		controller = cont;
 	}
 	
-	/**This method creates a VBox object and returns it. The VBox contains multiple HBoxes, each of them containing
-	 * 3 StackPane created using the {@code buildSingleProduct} function.*/
+	/**This method creates a VBox object and returns it. The VBox contains multiple HBoxes,
+	 * each of them containing 3 StackPane created using the {@code buildSingleProduct} function.*/
 	public VBox getProductsView(List<Product> products){
 		
 		HBox tmp = new HBox();
@@ -48,7 +42,7 @@ public class ProductsController{
 			try {
 				productPane = loader.load();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.getLocalizedMessage();
 			}
 			
@@ -78,11 +72,8 @@ public class ProductsController{
 		
 	
 	
-	/**This method creates a StackPane representing a Product object, then returns it.*/
+	/**This method creates a StackPane based on a Product objects parameters, then returns it.*/
 	private StackPane buildSingleProduct(Product prod, StackPane productPane) {
-		
-		Text owner = (Text) productPane.lookup("#ownerField");
-		Label ownerTxt = (Label) productPane.lookup("#ownerTypeField");
 		
 		Label name = (Label) productPane.lookup("#nameField");
 		name.setText(prod.getName());
@@ -93,15 +84,6 @@ public class ProductsController{
 		Label price = (Label) productPane.lookup("#priceField");
 		price.setText("$"+Double.toString(prod.getPrice()));
 		
-//		if(prod.hasOwner()) {
-//			
-//			owner.setText(prod.getOwnerName());
-//			ownerTxt.setText("Owner: ");
-//		
-//		} else {
-//			ownerTxt.setText("");
-//			owner.setText("");
-//		}
 		productPane.setOnMouseClicked((MouseEvent event) -> {
 			handleProductClick(id.getText());
 			if(productPane == selected) {
@@ -113,6 +95,7 @@ public class ProductsController{
 		});
 		return productPane;
 	}
+	
 	
 	/**This method makes the main controller show the buy/return button in the left buttons section.
 	 * It accepts an ID parameter needed to buy or return the specific product.

@@ -5,17 +5,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
 import entities.CredentialsCouple;
 import entities.Product;
 
 /**This class handles some operations needed by the {@code MarketServer}.
  * - Storage access and handling (credentials and forSaleProducts)
  * - Credentials checking
- * - 
+ * - products buy / sell / upload
  * 
  * @author EksPC*/
 public class ServerController {
@@ -78,7 +76,8 @@ public class ServerController {
 	}
 	
 	
-	/**This method updates the two available products list (products for sale and products owned by the client).*/
+	/**This method updates the two available products list 
+	 * (products for sale and products owned by the client).*/
 	public void updateProductsLists() {
 		List<Product> newFS = new ArrayList<Product>();
 		List<Product> newO = new ArrayList<Product>();
@@ -166,7 +165,7 @@ public class ServerController {
 			price = Double.parseDouble(line.substring(secondDelimiter+1,thirdDelimiter));
 			
 		} catch (NumberFormatException ne) {
-//			logger.log(Level.SEVERE,"Conversion error (parseInt) -> Message:\n" + ne.getMessage());
+			System.out.println("Conversion error (parseInt) -> Message:\n" + ne.getMessage());
 			return null;
 		}
 		
@@ -209,8 +208,7 @@ public class ServerController {
             }
             
         } catch (IOException e) {
-//           logger.log(Level.SEVERE,"Credentials reading error - "+e.getLocalizedMessage());
-           
+        	System.out.println(e.getLocalizedMessage());
         } finally {
             if (scanner != null) {
 			    scanner.close();
@@ -220,7 +218,8 @@ public class ServerController {
 
 
 	/**
-	 * This method upload a product (if the id is valid) by weriting it on the database.
+	 * This method upload a product by writing it on the products list, then the method 
+	 * {@code updateProductsLists} is used.
 	 * @return boolean*/
 	public boolean uploadProduct(String prod) throws IOException {
 		
@@ -271,8 +270,8 @@ public class ServerController {
 		return true;
 	}
 
-	/**This method allows a user to buy a product. Basically it re-writes the ownership of a product and updates the lists
-	 * of product with the method {@code updateProductsLists}.*/
+	/**This method allows a user to buy a product. Basically it re-writes the ownership of a product 
+	 * and updates the lists of product with the method {@code updateProductsLists}.*/
 	public boolean buyProduct(String id) {
 		for(int i = 0; i < products.size();i++){
 			if(products.get(i).getId().equals(id)) {
@@ -286,7 +285,7 @@ public class ServerController {
 	}	
 	
 	
-	/**This method allows a user to return a product owned by the current user.*/
+	/**This method allows a user to return a product.*/
 	public boolean returnProduct(String id) {
 		for(int i = 0; i < products.size();i++){
 			if(products.get(i).getId().equals(id)) {

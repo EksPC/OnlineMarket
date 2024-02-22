@@ -29,11 +29,8 @@ public class Main extends Application{
 		launch(args);
 	}
 	
-	public void printMessage(String message) {
-		System.out.println(message);
-	}
 	
-	
+	/**Getter method for the scene root.*/
 	public Parent getRoot() {
 		return primaryStage.getScene().getRoot();
 	}
@@ -47,15 +44,17 @@ public class Main extends Application{
 		Scene scene = new Scene(root);
 			
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Online Market");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
-	
-	public void setNewCenter(ScrollPane center1, StackPane center2) {
-		if(center2 == null) {
-			view.setCenter(center1);
+	/**This method set a new centre of the main application.*/
+	public void setNewCenter(ScrollPane centre1, StackPane centre2) {
+		if(centre2 == null) {
+			view.setCenter(centre1);
 		} else {
-			view.setCenter(center2);
+			view.setCenter(centre2);
 		}
 		
 	}
@@ -86,6 +85,7 @@ public class Main extends Application{
 		//scene display
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Online Marker - Login");
 		primaryStage.show();
 	}
 	

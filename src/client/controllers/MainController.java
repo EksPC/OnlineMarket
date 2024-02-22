@@ -3,9 +3,6 @@ package client.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-
 import client.Main;
 import client.MarketClient;
 import entities.CredentialsCouple;
@@ -40,9 +37,6 @@ public class MainController {
 	private UploaderController uploaderController;
 	
 	private BorderPane mainView;
-	
-	private static final Logger logger = Logger.getLogger("MainControllerLogger");
-	private static FileHandler logFile = null;
 	
 	public MainController(Main main){
 		this.mainApp = main;
@@ -79,10 +73,12 @@ public class MainController {
 		} else {
 			credentials = new CredentialsCouple(username, password);
 			try {
+				
 				mainView = loaders.getAppLoader().load();
 				ScrollPane pane = new ScrollPane(productsController.getProductsView(client.getProducts(1)));
 				mainView.setCenter(pane);
 				mainApp.setNewScene(mainView);
+				appController.setUserName(username);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -132,7 +128,8 @@ public class MainController {
 
 	
 	
-	/** This method displays the product uploader on the main app when the respective button is clicked.
+	/** This method displays the uploader page and it is triggered when the respective
+	 * button is clicked.
 	 * */
 	public void showUploader() {
 
@@ -153,6 +150,8 @@ public class MainController {
 		client.startCommunication(5, prod.toString());
 	}
 	
+	/**This method triggers the method {@code printStatusMessage} in the upload controller.
+	 * @see printStatusMessage*/
 	public void printUploadStatus(int st) {
 		uploaderController.printStatusMessage(st==1);
 		if(st == 1) {
@@ -164,9 +163,8 @@ public class MainController {
 	 * after upload/return/buy requests from client.*/
 	private void updateProducts() {
 		
-		boolean b1 = client.startCommunication(1, null);
-		boolean b2 = client.startCommunication(2, null);
-		System.out.println("Update: " + b1 + "\t" + b2);
+		client.startCommunication(1, null);
+		client.startCommunication(2, null);
 	}
 	
 	/**This method allows the client to buy or return a product.
@@ -178,12 +176,15 @@ public class MainController {
 	}
 	
 	
-	
+	/**This method is triggered by the BUY button click and asks the client to send the server
+	 * a buy request of the product specified by the input string id.*/
 	public void buyProduct(String id) {
 		client.startCommunication(3, id);
 		showProducts(1);
 	}
 	
+	/**This method is triggered by the RETURN button click and asks the client to send the server
+	 * a return request of the product specified by the input string id.*/
 	public void returnProduct(String id) {
 		client.startCommunication(4, id);
 		showProducts(2);

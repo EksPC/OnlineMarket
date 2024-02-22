@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1480.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1501.0" style="-fx-background-color: white;" stylesheets="@../../Desktop/Coding/Java/OnlineMarket/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox maxHeight="-Infinity" prefHeight="680.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="680.0" maxWidth="290.0" prefHeight="680.0" prefWidth="290.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="productsListBtn" mnemonicParsing="false" onAction="#productsListButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" stylesheets="@../../resources/style.css" text="Products">
+            <Button fx:id="productsListBtn" mnemonicParsing="false" onAction="#productsListButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" stylesheets="@../style.css" text="Products">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font></Button>
-            <Button fx:id="returnProductsBtn" mnemonicParsing="false" onAction="#returnProductsButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" stylesheets="@../../resources/style.css" text="Return">
+            <Button fx:id="returnProductsBtn" mnemonicParsing="false" onAction="#returnProductsButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" stylesheets="@../style.css" text="Return">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font></Button>
-            <Button fx:id="uploadProductsBtn" mnemonicParsing="false" onAction="#uploadProductButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" text="Upload">
+            <Button fx:id="uploadProductsBtn" mnemonicParsing="false" onAction="#uploadProductButtonAction" prefHeight="150.0" prefWidth="270.0" styleClass="app-btn" stylesheets="@../style.css" text="Upload">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
-               <stylesheets>
-                  <URL value="@../../../style.css" />
-                  <URL value="@../../resources/style.css" />
-               </stylesheets>
+
             </Button>
-            <Button fx:id="multiPurposeButton" maxHeight="90.0" maxWidth="270.0" mnemonicParsing="false" onAction="#multiPurposeButtonAction" prefHeight="66.0" prefWidth="270.0" styleClass="multi-purpose-btn" stylesheets="@../../resources/style.css">
+            <Button fx:id="multiPurposeButton" maxHeight="90.0" maxWidth="270.0" mnemonicParsing="false" onAction="#multiPurposeButtonAction" prefHeight="66.0" prefWidth="270.0" styleClass="multi-purpose-btn" stylesheets="@../style.css">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="quitBtn" mnemonicParsing="false" onAction="#quitButtonAction" prefHeight="80.0" prefWidth="270.0" styleClass="quit-btn" stylesheets="@../../resources/style.css" text="QUIT">
+            <Button fx:id="quitBtn" mnemonicParsing="false" onAction="#quitButtonAction" prefHeight="80.0" prefWidth="270.0" styleClass="quit-btn" stylesheets="@../style.css" text="QUIT">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -45,26 +43,50 @@
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </VBox>
    </left>
    <top>
       <StackPane prefHeight="117.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="45.0" prefWidth="1280.0" />
+            <StackPane prefHeight="45.0" prefWidth="1280.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+                     <StackPane.margin>
+                        <Insets bottom="20.0" left="100.0" />
+                     </StackPane.margin>
+                     <image>
+                        <Image url="@../pngs/user-interface.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="userNameField" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="100.0" StackPane.alignment="BOTTOM_LEFT">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="10.0" left="80.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <ImageView fitHeight="140.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pngs/online-market-logo.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets left="230.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children></StackPane>
          </children></StackPane>
    </top>
    <bottom>
-      <StackPane prefHeight="83.0" prefWidth="991.0" BorderPane.alignment="CENTER">
-         <children>
-            <Text fx:id="warningText" strokeType="OUTSIDE" strokeWidth="0.0" text="testo" wrappingWidth="278.7294921875">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Text>
-         </children>
-      </StackPane>
+      <StackPane prefHeight="83.0" prefWidth="991.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
       <ScrollPane fx:id="centerPane" maxHeight="680.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <right>
+      <StackPane maxHeight="10.0" maxWidth="10.0" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

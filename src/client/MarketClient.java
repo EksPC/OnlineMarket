@@ -17,6 +17,10 @@ import entities.CredentialsCouple;
 import entities.Product;
 import entities.SingleMessage;
 
+
+/**This class represents the client in the context of a client-server communication.
+ * It allows the user to (indirectly) send and receive requests and responses to the server, like
+ * the authentication, lists of products, action status, etc...*/
 public class MarketClient{
 	
 	private static final int PORTNO = 5001;
@@ -38,26 +42,34 @@ public class MarketClient{
 	private static final Logger logger = Logger.getLogger("MarketClientLogger");
 	private static FileHandler logFile = null;
 	
+	/**Getter method for the field server, the socket connected to server's port.*/
 	public Socket getServer() {
 		return server;
 	}
 	
+	/**Getter method for the field {@code socketOutput}, the socket output stream.*/
 	public ObjectOutputStream getSocketOut() {
 		return socketOutput;
 	}
 	
+	/**Getter method for the field {@code socketInput}, the socket input stream.*/
 	public ObjectInputStream getSocketIn() {
 		return socketInput;
 	}
 	
+	/**Returns true if the client is connected to the server, false otherwise.*/
 	public boolean isConnected() {
 		return connectionState;
 	}
 	
+	/**Returns true if current user is authenticate, false otherwise.*/
 	public boolean isAuthenticated() {
 		return authenticationState;
 	}
 	
+	/**Getter method to obtain a specific list of products.
+	 * Based on {@code code input parameter} this method returns the list of products for sale, the list 
+	 * of products owned by the current user or an empty list.*/
 	public List<Product> getProducts(int code){
 		if(code == 1) {
 			return forSaleProducts;
@@ -70,7 +82,7 @@ public class MarketClient{
 	}
 	
 
-	
+	/**Constructor.*/
 	public MarketClient(MainController cont) {
 		
 		controller = cont;
@@ -81,25 +93,9 @@ public class MarketClient{
 		
 	}
 	
-	public void printMsg(String msg) {
-		System.out.println(msg);
-	}
-	
-	/**
-	 * Copy constructor
-	 * */
-	public MarketClient(MarketClient other) {
-		connectionState = other.isConnected();
-		authenticationState = other.isAuthenticated();
-		server = other.getServer();
-		socketInput = other.getSocketIn();
-		socketOutput = other.getSocketOut();
-	}
-	
 	
 	/**@hidden
-	 * This method sets up the logger of this class
-	 * 
+	 * This method sets up the logger of this class.
 	 * */
 	private static boolean setLogger() {
 		
@@ -114,7 +110,7 @@ public class MarketClient{
 			logFile.setFormatter(new SimpleFormatter());
 			
 		} catch (IOException e) {
-			logger.log(Level.SEVERE, "Logger not initialized");
+			System.out.println("Logger not initialized");
 			return false;
 		}
 		logger.log(Level.FINEST,"logger initialised");
@@ -123,8 +119,10 @@ public class MarketClient{
 	
 	
 	/**
-	 * This method gets the credentials from input {@code market.view}
-	 * and send them to server by a {@code CredentialsCouple} object.
+	 * This method gets the credentials from login fields and sends 
+	 * them to server by a {@code CredentialsCouple} object.
+	 * The response status then is returned:
+	 * true for authentication, false otherwise.
 	 * */
 	@SuppressWarnings("unchecked")
 	public boolean checkCredentials(CredentialsCouple credentials) {
@@ -168,7 +166,14 @@ public class MarketClient{
 	
 	
 	/**
-	 * This method simply sends a message via socket to the server and get the response*/
+	 * This method simply sends a message via socket to the server and get the response.
+	 * It allows 6 different requests:
+	 * 0 - close application (no response needed)
+	 * 1 - products for sale
+	 * 2 - products owned by the current user
+	 * 3 - buy a product (specified by an id)
+	 * 4 - return a product (specified by an id)
+	 * 5 - upload a product (string format)*/
 	@SuppressWarnings("unchecked")
 	public boolean startCommunication(int code, String prod) {
 		/*S:
@@ -186,13 +191,14 @@ public class MarketClient{
 			
 			switch(code) {
 			
-			case 1: //list of products
+			case 1: //for sale products
 				
 				forSaleProducts = (List<Product>) socketInput.readObject();
 				if(forSaleProducts != null) {
 					return true;
 				}
 				return false;
+			
 			case 2: //owned Products
 				ownedProducts = (List<Product>) socketInput.readObject();
 				if(ownedProducts != null) {
@@ -205,7 +211,8 @@ public class MarketClient{
 				
 				SingleMessage res = (SingleMessage) socketInput.readObject();
 				return (res.getRequest()==1);
-			case 4:
+			
+			case 4://return
 				
 				SingleMessage resp = (SingleMessage) socketInput.readObject();
 				return (resp.getRequest()==1);
@@ -235,7 +242,9 @@ public class MarketClient{
 
 	
 	
-	/**This method notifies an upload to the server by writing multiple messages.*/
+	/**This method sends an upload request to the server, then it reads the response.
+	 * If the response state is positive, another method is triggered to send the product to upload.
+	 * @see sendProductToUpload*/
 	private void notifyUpload() throws IOException, ClassNotFoundException{
 		SingleMessage req = new SingleMessage(connectionState, authenticationState);
 		SingleMessage res = new SingleMessage(connectionState, authenticationState);
@@ -254,8 +263,8 @@ public class MarketClient{
 	}
 	
 	
-	/**
-	 * This method handles the communication with the server to upload a product.*/
+	/**This method sends the product to upload to the server and triggers the controller method to 
+	 * notify the user the operation state.*/
 	private void sendProductToUpload(String prod) throws IOException, ClassNotFoundException{
 		
 		socketOutput.writeObject(prod);
@@ -309,8 +318,6 @@ public class MarketClient{
 		} 
 		
 	}
-	
-	
 	
 	
 	/**

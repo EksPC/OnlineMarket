@@ -54,18 +54,4 @@ public class LoginController implements Initializable{
 		warning_text.setText(message);
 	}
 	
-	
-	/**This method sets the logger of this Class using the client log file.*/
-//	private void setLogger() {
-//		logger = Logger.getLogger("logger");
-//		try {
-//			FileHandler logFile = new FileHandler(logFilePath);
-//			logger.addHandler(logFile);
-//			logFile.setFormatter(new SimpleFormatter());
-//			
-//		} catch(IOException e) {
-//			System.out.println("Controller logger - " + e.getLocalizedMessage());
-//		}
-//	}
-	
 }

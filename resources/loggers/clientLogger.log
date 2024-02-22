@@ -1,0 +1,6 @@
+Feb 20, 2024 6:18:22 PM client.MarketClient setConnection
+FINE: CLIENT - setConnection executed
+Feb 20, 2024 6:18:23 PM client.MarketClient setConnection
+FINE: CLIENT - connection enstablished
+Feb 20, 2024 6:18:26 PM client.MarketClient checkCredentials
+FINE: CLIENT - checkCredentials executed
