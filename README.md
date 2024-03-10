@@ -4,8 +4,7 @@ the client is allowed to buy, return and upload products. The list of products i
 is made with simple buttons.
 
 It is my first "complete" project, I spent quite a few time on it and really learnt how to use javafx, FXML files and sockets. 
-However, I only implemented really basic and raw features, like a text-file database, a login interface without cryptography and
-kind of inefficient algorithms for product-searching and a basic UI. 
+However, I only implemented really basic and raw features, like a text-file database, a login interface without cryptography features, kind of inefficient algorithms for product-searching and a basic UI. 
 
 I'm overall proud of my work but I'm looking to do better next time.
 
@@ -13,9 +12,8 @@ I'm overall proud of my work but I'm looking to do better next time.
 
 
 ## CLIENT POV
-After starting the application, the client has to log himself in by filling two simple fields: username and password. 
---- image ---
-Once authenticated, the client can navigate through the app using lateral buttons. There four buttons: 
+After starting the application, the client has to log in filling two simple fields: username and password. 
+Once authenticated, the client can navigate through the app using lateral buttons. There are four buttons: 
   - Products (default):
     Shows the list of buyable products. Here a client can buy a product by clicking
     on it and select the option "BUY".
@@ -26,3 +24,12 @@ Once authenticated, the client can navigate through the app using lateral button
   - Upload:
     In this section a client can upload a product by inserting it's name, ID and        price. If the product's ID is already taken, a message appears on the screen 
     and the client has to choose another one. 
+
+
+## Note
+This program is an assignment for my University (UNIPR) course "Software engineering".
+This assignment has few requests:
+- Use of javafx for UI
+- Client communicates with Server through sockets
+- Client can request the products list, upload and return a product and send credentials for authentication.
+- Server has to responde all the client's requests.
