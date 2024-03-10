@@ -12,10 +12,11 @@ few requests:
 I spent quite a few time on this project and really learnt how to use javafx, FXML files and sockets. 
 However, I only implemented really basic and raw features, like a text-file database, a login interface without cryptography features, inefficient algorithms for product-searching and authentication and a basic UI. 
 
----
+I provide a simple description in the following lines, while the technical aspects of the project are described by javadocs. 
+
 
 ## CLIENT POV
-After starting the application, the client has to log in filling two simple fields: username and password. 
+After launching the application, the client has to log in by filling two simple fields: username and password. 
 Once authenticated, the client can navigate through the app using lateral buttons. There are four buttons: 
   - Products (default):
     Shows the list of buyable products. Here a client can buy a product by clicking
